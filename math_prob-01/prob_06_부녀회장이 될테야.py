@@ -12,5 +12,4 @@ for t in range(T):
         for n in range(N):
             temp_list[n] = sum(n_list[:n+1])
         n_list = temp_list[:]
-        print(n_list)
     print(n_list[n])
