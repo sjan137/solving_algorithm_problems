@@ -5,9 +5,9 @@ def minChange(m, n, board):
     ref = ['WB', 'BW']
     
     m_start = 0
-    n_start = 0
     total_result = list()
     while m_start + 8 <= m:
+        n_start = 0
         while n_start + 8 <= n:
             result1 = list()
             result2 = list()
