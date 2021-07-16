@@ -10,7 +10,6 @@ def getMaxUnderM(m, num_list):
                     if (num1 == num3) or (num2 == num3): continue
                     else: sum_list.append(num1 + num2 + num3)
     sum_list.sort()
-    print(sum_list)
     while sum_list[-1] > m: sum_list.pop()
     print(sum_list.pop())
 
