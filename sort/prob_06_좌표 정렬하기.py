@@ -1,26 +1,27 @@
 import sys
 
-def xySort(x_list, y_list):
+def xySort(xy_hash):
     result = list()
-    for ref in range(-100000, 100001):
-        temp_y = list()
-        while ref in x_list:
-            index_num = x_list.index(ref)
-            x_list.remove(ref)
-            temp_y.append(y_list.pop(index_num))
-        temp_y.sort()
-        if temp_y:
-            for y in temp_y:
-                result.append([ref, y])
+    key_list = list(xy_hash.keys())
+    key_list.sort()
+    for key in key_list:
+        y_value = xy_hash[key]
+        if len(y_value) > 1:
+            y_value.sort()
+            for y in y_value:
+                result.append([key, y])
+        else: result.append([key, y_value[0]])
 
     for xy in result:
         print(xy[0], xy[1])
 
 N = int(sys.stdin.readline())
-x_list = list()
-y_list = list()
+xy_hash = {}
 for _ in range(N):
     x, y = map(int, sys.stdin.readline().split())
-    x_list.append(x)
-    y_list.append(y)
-xySort(x_list, y_list)
+    if x in xy_hash.keys():
+        xy_hash[x].append(y)
+    else: xy_hash[x] = [y]
+# print(xy_hash)
+# print(list(xy_hash.keys()))
+xySort(xy_hash)
