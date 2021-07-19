@@ -1,25 +1,26 @@
 import sys
 
-def xySort(xy_list):
-    change_count = 1
-    while change_count != 0:
-        change_count = 0
-        i = 0
-        while i < (len(xy_list) - 1):
-            if xy_list[i][0] > xy_list[i+1][0]:
-                xy_list[i], xy_list[i+1] = xy_list[i+1], xy_list[i]
-                change_count += 1
-            elif (xy_list[i][0] == xy_list[i+1][0]) & (xy_list[i][1] > xy_list[i+1][1]):
-                xy_list[i], xy_list[i+1] = xy_list[i+1], xy_list[i]    
-                change_count += 1
-            i += 1
-    
-    for xy in xy_list:
+def xySort(x_list, y_list):
+    result = list()
+    for ref in range(-100000, 100001):
+        temp_y = list()
+        while ref in x_list:
+            index_num = x_list.index(ref)
+            x_list.remove(ref)
+            temp_y.append(y_list.pop(index_num))
+        temp_y.sort()
+        if temp_y:
+            for y in temp_y:
+                result.append([ref, y])
+
+    for xy in result:
         print(xy[0], xy[1])
 
 N = int(sys.stdin.readline())
-xy_list = list()
+x_list = list()
+y_list = list()
 for _ in range(N):
-    xy = list(map(int, sys.stdin.readline().split()))
-    xy_list.append(xy)
-xySort(xy_list)
+    x, y = map(int, sys.stdin.readline().split())
+    x_list.append(x)
+    y_list.append(y)
+xySort(x_list, y_list)
