@@ -1,18 +1,17 @@
 import sys
 
 def drawStar(n):
-    if n == 1:
-        return '*', ' '
+    if n == 3:
+        star_list = ['***', '* *', '***']
+        return star_list
     else:
-        element1, element2 = drawStar(n//3)
+        star_list = drawStar(n//3) * 3
         for i in range(n):
-            if i // (n//3) == 1:
-                a = (element1 + element2 + element1)
-                print(a)
-            else:
-                b = (element1 * 3)
-                print(b)
-        return a, b
+            if i in range(n//3, 2*(n//3)):
+                star_list[i] += (' ' * (n//3) + star_list[i])
+            else: star_list[i] += (star_list[i] * 2)
+        return star_list
 
-
-drawStar(9)
+N = int(sys.stdin.readline())
+for row in drawStar(N):
+    print(row)
