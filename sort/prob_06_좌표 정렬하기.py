@@ -22,6 +22,4 @@ for _ in range(N):
     if x in xy_hash.keys():
         xy_hash[x].append(y)
     else: xy_hash[x] = [y]
-# print(xy_hash)
-# print(list(xy_hash.keys()))
 xySort(xy_hash)
