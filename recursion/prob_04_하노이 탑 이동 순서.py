@@ -4,13 +4,13 @@ def hanoi(n):
     if n == 1: return 1
     else: return 2 * hanoi(n-1) + 1
 
-def hanoiMove(n):
-    if n == 1:
-        return [1]
+def hanoiMove(n, st1, st2, st3):
+    if n == 1: print(st1, st3)
     else:
-        return hanoiMove(n-1) + [n] + hanoiMove(n-1)
+        hanoiMove(n-1, st1, st3, st2)
+        print(st1, st3)
+        hanoiMove(n-1, st2, st1, st3)
 
 N = int(sys.stdin.readline())
-layer_list = list(range(N, 0, -1))
 print(hanoi(N))
-print(hanoiMove(N))
+hanoiMove(N, 1, 2, 3)

@@ -1,21 +1,19 @@
 import sys
 
-# DFS, 재귀
-def permutation(n, m):
+def combination(start, n, m):
     if len(row) == m:
         print(' '.join(map(str, row)))
         return
     else:
-        for i in range(n):
+        for i in range(start, n):
             if check[i]: continue
-            row.append(i+1)
             check[i] = True
-            permutation(n, m)
-            row.pop()
+            row.append(i+1)
+            combination(i+1, n, m)
             check[i] = False
+            row.pop()
 
-# 1<=M<=N<=8
 N, M = map(int, sys.stdin.readline().split())
 check = [False] * N
 row = list()
-permutation(N, M)
+combination(0, N, M)
