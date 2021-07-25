@@ -1,25 +1,19 @@
 import sys
 
-def nQueen(x, y, n):
-    for i in range(y):
-        if x == x_check[i]: return 0
-        if y == y_check[i]: return 0
-        if abs(x - x_check[i]) == abs(y - y_check[i]): return 0
-    
-    if y == n-1: return 1
-    
-    x_check[y] = x
-    y_check[y] = y
-    
-    count = 0
+def nQueen(start, n):
+    # 함수 외부에서 지정한 변수 count에 계산을 실행하기 위해 전역 변수로 선언
+    global count
+    if start == n:
+        count += 1
+        return
     for i in range(n):
-        count += nQueen(i, y+1, n)
-
-    return count
+        if ch1[i] or ch2[n-i+start-1] or ch3[i+start]: continue
+        ch1[i] = ch2[n-i+start-1] = ch3[i+start] = True
+        nQueen(start+1, n)
+        ch1[i] = ch2[n-i+start-1] = ch3[i+start] = False
 
 N, count = int(sys.stdin.readline()), 0
-x_check = [None] * N
-y_check = [None] * N
-for i in range(N):
-    count += nQueen(i, 0, N)
+# 세로, 대각선(\,/)에 따라 가능 유무 판단
+ch1, ch2, ch3 = [False] * N, [False] * (2*N-1), [False] * (2*N-1)
+nQueen(0, N)
 print(count)
