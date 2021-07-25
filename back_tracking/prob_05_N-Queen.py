@@ -1,29 +1,19 @@
 import sys
 
 def nQueen(start, n):
-    if len(result) == n:
-        print(result)
-        count.append(1)
+    # 함수 외부에서 지정한 변수 count에 계산을 실행하기 위해 전역 변수로 선언
+    global count
+    if start == n:
+        count += 1
         return
-    else:
-        for i in range(n):
-            if check[start][i]: continue
-            result.append(i+1)
-            temp_check = check
-            # len_rst = len(result)
-            # for j in result:
-            #     row_list = [j-1-len_rst, j-1, j-1+len_rst]
-            #     for k in row_list:
-            #         if (k < 0) or (k > n-1) or check[k]: continue
-            #         check[k] = True
-            check[i] = True
-            nQueen(start+1, n)
-            check[i] = False
-            result.pop()
+    for i in range(n):
+        if ch1[i] or ch2[n-i+start-1] or ch3[i+start]: continue
+        ch1[i] = ch2[n-i+start-1] = ch3[i+start] = True
+        nQueen(start+1, n)
+        ch1[i] = ch2[n-i+start-1] = ch3[i+start] = False
 
-N = int(sys.stdin.readline())
-result = list()
-check = [[False] * N] * N
-count = list()
+N, count = int(sys.stdin.readline()), 0
+# 세로, 대각선(\,/)에 따라 가능 유무 판단
+ch1, ch2, ch3 = [False] * N, [False] * (2*N-1), [False] * (2*N-1)
 nQueen(0, N)
-print(len(count))
+print(count)
