@@ -1,3 +1,4 @@
+# 백준에서 python3 대신 pypy3로 제출하니까 시간 초과가 뜨지 않고 성공.
 import sys
 
 def nQueen(start, n):
