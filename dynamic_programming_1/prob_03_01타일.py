@@ -1,15 +1,27 @@
 import sys
 
-# 결과는 피보나치 수열을 따름.
+# 결과를 순열의 합으로 계산
 def binaryTile(n):
-    if n == 1: return result[0]
-    elif n == 2: return result[1]
-    else:
-        for i in range(2, n):
-            if not result[i]:
-                result[i] = result[i-2] + result[i-1]
-        return result[n-1]
+    global count
+    if n == 1: return
+    a = n - 1
+    b = 1
+    while a >= b:
+        count += combination(a, b)
+        a -= 1
+        b += 1
+    return(count)
+
+def combination(a, b):
+    result = 1
+    c = a - b
+    for i in range(b, a):
+        result *= (i+1)
+    while c > 0:
+        result /= c
+        c -= 1
+    return int(result)
 
 N = int(sys.stdin.readline())
-result = [1, 2] + [0] * (N - 2)
+count = 1
 print(binaryTile(N))
