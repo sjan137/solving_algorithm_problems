@@ -2,26 +2,24 @@ import sys
 
 
 def getLCS(str1, str2):
-    max_length = 0
-    print(str1, str2)
+    # str1을 기준으로 할 때
+    len_1 = len(str1)
+    len_2 = len(str2)
+    for i in range(len_1):
+        list_1 = []
+        list_2 = []
+        for j in range(len_2):
+            if str1[i] == str2[j]:
+                if not list_1:
+                    list_1.append(i)
+                    list_2.append(j)
+                elif j > list_2[-1]:
+                    list_1.append(i)
+                    list_2.append(j)
+        print(list_1, list_2)
+    return
 
-    for i in range(len(str1)):
-        for j in range(len(str2)):
-            # print(i, j)
-            a, b = i, j
-            if str1[a] == str2[b]:
-                print(str1[a], str2[b])
-                temp = 0
-                while str1[a] == str2[b]:
-                    temp += 1
-                    a += 1
-                    b += 1
-                    # print(a, len(str1))
-                    if a >= len(str1) or b >= len(str2): break
-                if temp > max_length: max_length = temp
-                print(temp)
-    return max_length
-
-string_1 = sys.stdin.readline().split()
-string_2 = sys.stdin.readline().split()
-print(getLCS(string_1[0], string_2[0]))
+string_1 = sys.stdin.readline().strip()
+string_2 = sys.stdin.readline().strip()
+print(string_1, string_2)
+print(getLCS(string_1, string_2))
