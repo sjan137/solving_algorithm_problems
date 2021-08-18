@@ -6,11 +6,10 @@ def main():
     time_list = list(map(int, sys.stdin.readline().split()))
     time_list.sort()
 
-    time_sum = 0
-    for i in range(N):
-        time_sum += time_list[i] * (N - i)
+    for i in range(1, N):
+        time_list[i] += time_list[i-1]
     
-    print(time_sum)
+    print(sum(time_list))
     return None
 
 if __name__ == "__main__":
