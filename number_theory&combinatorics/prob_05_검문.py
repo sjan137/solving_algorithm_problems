@@ -1,19 +1,22 @@
 import sys
 
 
+def gcd(a, b):
+    return gcd(b%a, a) if b%a else a
+
 def solve(n_list):
     result = []
-    for i in range(2, min(n_list)+1):
-        if not check(n_list, i): result.append(i)
+    n_list.sort()
+    if len(n_list) == 2:
+        gcd_num = n_list[1] - n_list[0]
+        for i in range(2, min(n_list)+1):
+            if gcd_num % i == 0: result.append(i)
+    else:
+        gcd_num = gcd(n_list[1]-n_list[0], n_list[2]-n_list[0])
+        for i in range(2, gcd_num+1):
+            if gcd_num % i == 0: result.append(i)
     print(*result)
     return None
-
-def check(n_list, m):
-    start = n_list[0] % m
-    flag = False
-    for i in range(1, len(n_list)):
-        if start != (n_list[i] % m): flag = True
-    return flag
 
 N = int(sys.stdin.readline())
 numbers = [int(sys.stdin.readline()) for _ in range(N)]
