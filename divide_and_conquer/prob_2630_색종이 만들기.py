@@ -39,7 +39,9 @@ def main():
         white += w
         blue += b
     
-    return str(white) + str(blue)
+    return white, blue
 
 if __name__ == '__main__':
-    print('\n'.join(main()))
+    w, b = main()
+    print(w)
+    print(b)
