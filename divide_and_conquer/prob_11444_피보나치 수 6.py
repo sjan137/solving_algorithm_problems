@@ -8,6 +8,7 @@ def dotAB(a, b):
         for j in range(2):
             for k in range(2):
                 result[i][j] += a[i][k] * b[k][j]
+            result[i][j] %= 1000000007
     return result
 
 def getFibonacci(arr, n):
