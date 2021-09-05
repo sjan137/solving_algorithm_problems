@@ -1,33 +1,30 @@
 import sys
 
-def isPal(data, idx):
-    newData = data[idx[0]-1:idx[1]]
-    n = idx[1] - idx[0] + 1
-    # P = [[0] * n for _ in range(n)]
-    
-    # for i in range(n-2, -1, -1):
-    #     for j in range(i+1, n):
-    #         if newData[i] == newData[j]: P[i][j] = P[i+1][j-1]
-    #         else: P[i][j] = min(P[i+1][j], P[i][j-1]) + 1
-    
-    # if P[0][-1]: return 0
-    # else: return 1
-    i, j = 0, n-1
-    flag = False
-    while not flag and i <= n // 2:
-        flag = (newData[i] == newData[j])
-        i += 1
-        j -= 1
+# 팰린드롬 여부를 저장하는 2차원 리스트. i == j인 경우는 모두 1
+# data[i] == data[j]일 때, data[i+1] 부터 data[j-1]까지가 팰린드롬이라면(pal[i+1][j-1] == 1) i, j일 때도 팰린드롬
+# data[i] != data[j]일 때, 팰린드롬 아님
+def isPal(data):
+    n = len(data)
+    pal = [[0] * n for _ in range(n)]
 
-    if flag: return 1
-    else: return 0
+    for i in range(n-1, -1, -1):
+        for j in range(i, n):
+            if i == j: pal[i][j] = 1
+            elif data[i] == data[j]:
+                if pal[i+1][j-1]: pal[i][j] = 1
+    
+    return pal
 
 def main():
     N = int(sys.stdin.readline())
     nums = sys.stdin.readline().split()
     M = int(sys.stdin.readline())
-    result = [isPal(nums, list(map(int, sys.stdin.readline().split()))) for _ in range(M)]
-    return result
+    pal_arr = isPal(nums)
+    
+    for _ in range(M):
+        start, end = map(int, sys.stdin.readline().split())
+        print(pal_arr[start-1][end-1])
+    return
 
 if __name__ == "__main__":
-    print('\n'.join(map(str, main())))
+    main()
