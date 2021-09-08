@@ -8,7 +8,7 @@ def main():
         command = sys.stdin.readline().split()
         if command[0] == 'push': dq.append(int(command[1]))
         elif command[0] == 'pop':
-            if dq: print(dq.pop())
+            if dq: print(dq.popleft())
             else: print(-1)
         elif command[0] == 'size': print(len(dq))
         elif command[0] == 'empty':
