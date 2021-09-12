@@ -1,23 +1,21 @@
 import sys
 
-def binarySearch(nums_list, num):
-    n = len(nums_list)
-    if n == 1: return "Yes" if nums_list[0] == num else "No"
-    mid = n // 2
-    return binarySearch(nums_list[:mid], num) if nums_list[mid] > num else binarySearch(nums_list[mid:], num)
+def binarySearch(nums_list, num, start, end):
+    if start > end: return 0
+    mid = (start + end) // 2
+    return 1 if nums_list[mid] == num else (binarySearch(nums_list, num, start, mid-1) if nums_list[mid] > num  else binarySearch(nums_list, num, mid+1, end))
 
 def main():
     N = int(sys.stdin.readline())
-    nums = list(map(int, sys.stdin.readline().split()))
+    nums = sorted(list(map(int, sys.stdin.readline().split())))
     M = int(sys.stdin.readline())
     toCheck = list(map(int, sys.stdin.readline().split()))
     result = []
-    nums.sort()
 
     for num in toCheck:
-        result.append(binarySearch(nums, num))
+        result.append(binarySearch(nums, num, 0, N-1))
     
     return result
 
 if __name__ == "__main__":
-    print(*main())
+    print('\n'.join(map(str, main())))
