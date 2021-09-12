@@ -7,13 +7,13 @@ def binarySearch(nums_list, num, start, end):
 
 def main():
     N = int(sys.stdin.readline())
-    nums = sorted(list(map(int, sys.stdin.readline().split())))
+    nums = set(map(int, sys.stdin.readline().split()))
     M = int(sys.stdin.readline())
     toCheck = list(map(int, sys.stdin.readline().split()))
     result = []
 
     for num in toCheck:
-        result.append(binarySearch(nums, num, 0, N-1))
+        result.append(1) if num in nums else result.append(0)
     
     return result
 
