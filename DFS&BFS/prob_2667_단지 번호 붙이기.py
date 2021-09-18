@@ -1,6 +1,7 @@
 import sys
 from collections import deque
 
+# BFS 이용한 코드(deque) - 32108KB, 96ms
 def bfs(board, n, position, visited):
     dr = [(0, 0), (-1, 0), (1, 0), (0, -1), (0, 1)]
     area = 0
@@ -16,6 +17,20 @@ def bfs(board, n, position, visited):
     
     return area
 
+# DFS 이용한 코드(재귀 호출) - 29304KB, 76ms
+def dfs(board, n, position, visited):
+    dr = [(0, 0), (-1, 0), (1, 0), (0, -1), (0, 1)]
+    area = 0
+    x, y = position
+    
+    for dx, dy in dr:
+        if 0 <= x+dx < n and 0 <= y+dy < n and board[x+dx][y+dy] and not visited[x+dx][y+dy]:
+            visited[x+dx][y+dy] = True
+            area += 1
+            area += dfs(board, n, [x+dx, y+dy], visited)
+    
+    return area
+
 def main():
     N = int(sys.stdin.readline())
     board = [list(map(int, list(sys.stdin.readline().strip()))) for _ in range(N)]
@@ -26,7 +41,8 @@ def main():
     for i in range(N):
         for j in range(N):
             if not board[i][j] or visited[i][j]: continue
-            result.append(bfs(board, N, [i, j], visited))
+            # result.append(bfs(board, N, [i, j], visited))  # BFS - 32108KB, 96ms
+            result.append(dfs(board, N, [i, j], visited))  # DFS - 29304KB, 76ms
             cnt += 1
 
     return [cnt] + sorted(result)
