@@ -1,5 +1,4 @@
-import sys
-import heapq
+import sys, heapq
 
 def main():
     N = int(sys.stdin.readline())
