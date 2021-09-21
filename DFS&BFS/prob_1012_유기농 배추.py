@@ -6,7 +6,6 @@ def bfs(board, visited, n, m, position):
     dr = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
     while q:
-        print(q)
         y, x = q.popleft()
         if 0 <= y < n and 0 <= x < m and board[y][x] and not visited[y][x]: visited[y][x] = True
         for dy, dx in dr:
