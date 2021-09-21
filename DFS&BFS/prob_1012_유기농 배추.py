@@ -1,27 +1,35 @@
 import sys
+from collections import deque
 
-def dfs(board, location, m, n):
+def bfs(board, visited, n, m, position):
+    q = deque([position])
     dr = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-    y, x = location
-    board[y][x] = 0
-    
-    for yy, xx in dr:
-        if 0 <= x+xx < M and 0 <= y+yy < N and board[y+yy][x+xx]: dfs(board, [y+yy, x+xx], m, n)
+
+    while q:
+        print(q)
+        y, x = q.popleft()
+        if 0 <= y < n and 0 <= x < m and board[y][x] and not visited[y][x]: visited[y][x] = True
+        for dy, dx in dr:
+            i, j = y+dy, x+dx
+            if 0 <= i < n and 0 <= j < m and board[i][j] and not visited[i][j]:
+                visited[i][j] = True
+                q.append([i, j])
 
 T = int(sys.stdin.readline())
 for _ in range(T):
     M, N, K = map(int, sys.stdin.readline().split())
-    board = [[0] * M for _ in range(N)]
+    ones = [[0] * M for _ in range(N)]
+    visited = [[False] * M for _ in range(N)]
     cnt = 0
     
     for _ in range(K):
         x, y = map(int, sys.stdin.readline().split())
-        board[y][x] = 1
+        ones[y][x] = 1
     
     for i in range(N):
         for j in range(M):
-            if board[i][j] == 0: continue
+            if not ones[i][j] or visited[i][j]: continue
             cnt += 1
-            dfs(board, [i, j], M, N)
+            bfs(ones, visited, N, M, [i, j])
     
     print(cnt)
