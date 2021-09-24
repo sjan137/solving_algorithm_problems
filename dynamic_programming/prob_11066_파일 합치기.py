@@ -29,12 +29,12 @@ def main():
     T = int(sys.stdin.readline())
     for _ in range(T):
         N = int(sys.stdin.readline())
-        inputs = list(map(int, sys.stdin.readline().split()))
+        data = list(map(int, sys.stdin.readline().split()))
     
         result = 0
         q = []
-        for w in inputs:
-            heapq.heappush(q, w)
+        for num in data:
+            heapq.heappush(q, num)
     
         while len(q) > 1:
             a, b = heapq.heappop(q), heapq.heappop(q)
