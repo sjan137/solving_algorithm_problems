@@ -16,13 +16,13 @@ def binarySearch(num, numbers, start, end):
         return cnt
 
 N = int(sys.stdin.readline())
-nums = list(map(int, sys.stdin.readline().split()))
-nums.sort()
+nums = sorted(list(map(int, sys.stdin.readline().split())))
 M = int(sys.stdin.readline())
 toFind = list(map(int, sys.stdin.readline().split()))
-result = []
+result = {}
 
 for num in toFind:
-    result.append(binarySearch(num, nums, 0, N-1))
+    if num in result: continue
+    result[num] = binarySearch(num, nums, 0, N-1)
 
-print(*result)
+print(*[result[num] for num in toFind])
