@@ -14,7 +14,7 @@ def solution(priorities, location):
                 nums.popleft()
                 idx_list.popleft()
         else:
-            nums.append(nums.popleft())
-            idx_list.append(idx_list.popleft())
+            nums.rotate(-1)
+            idx_list.rotate(-1)
 
     return answer
