@@ -1,16 +1,19 @@
 import sys
 from collections import deque
 
-# 1. 연결된 노드의 개수가 1이라면(끝 노드), 탐색 시작
-# 2. DFS 탐색으로 최대 깊이 구하기
+# 1. 임의의 노드 1에서 DFS 탐색으로 최대 깊이 구하기
+# 2. 1에서 시작했을 때 가장 긴 지름을 저장하고, 이 경우의 마지막 노드 반환
+# 3. 마지막 노드에 대해 한 번 더 DFS 탐색하고, 두 경우의 지름 중 높은 지름을 출력
 def DFS(tree_info, checked, start_node):
     max_depth = 0
     next_nodes = tree_info[start_node]
+
     for next_node, dist in next_nodes:
         if checked[next_node-1]: continue
         checked[next_node-1] = True
-        max_depth = max(max_depth, dist+DFS(tree_info, checked, next_node))
+        max_depth = max(max_depth, dist + DFS(tree_info, checked, next_node))
         checked[next_node-1] = False
+    
     return max_depth
 
 V = int(sys.stdin.readline())
@@ -25,10 +28,7 @@ for _ in range(V):
 checked = [False] * V
 result = 0
 
-for i in range(1, V+1):
-    if len(tree[i]) != 1: continue
-    checked[i-1] = True
-    result = max(result, DFS(tree, checked, i))
-    checked[i-1] = False
+result = DFS(tree, checked, 1)
+# result = DFS(tree, checked, )
 
 print(result)
