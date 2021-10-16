@@ -16,7 +16,6 @@ def DFS(tree_info, checked, start_node):
         if max_depth < dist + depth:
             max_depth = dist + depth
             history = history + next_history
-        # max_depth = max(max_depth, dist + DFS(tree_info, checked, next_node))
         checked[next_node-1] = False
     
     return max_depth, history
