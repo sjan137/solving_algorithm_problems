@@ -1,4 +1,5 @@
 import sys
+sys.setrecursionlimit(10**9)
 
 # 1. 부모 노드, 자식 노드로 구분되어 입력이 주어지지만, 일반적인 트리로 구성(부모, 자식 구분 없는)
 # 2. 연결된 노드가 1개뿐인 노드 하나를 골라서 DFS 수행, 방문하는 노드 저장
@@ -10,7 +11,7 @@ def DFS(tree_info, check, visit, start_node):
     for next_node, w in tree_info[start_node]:
         if check[next_node-1]: continue
         check[next_node-1] = True
-        w_sum, new_visit = DFS(tree_info, check, [], next_node)
+        w_sum, new_visit = DFS(tree_info, check, visit, next_node)
         if max_w < w + w_sum:
             max_w = w + w_sum
             visit += new_visit
