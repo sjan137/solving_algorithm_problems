@@ -27,13 +27,15 @@ for _ in range(N-1):
 checked = [False] * N
 cur_node = 1
 
-while len(tree[cur_node]) != 1:
-    cur_node += 1
+if N != 1:
+    while len(tree[cur_node]) != 1:
+        cur_node += 1
 
-for _ in range(2):
-    checked[cur_node-1] = True
-    result, history = DFS(tree, checked, [], cur_node)
-    checked[cur_node-1] = False
-    cur_node = history[-1]
+    for _ in range(2):
+        checked[cur_node-1] = True
+        result, history = DFS(tree, checked, [], cur_node)
+        checked[cur_node-1] = False
+        cur_node = history[-1]
 
-print(result)
+    print(result)
+else: print(0)
