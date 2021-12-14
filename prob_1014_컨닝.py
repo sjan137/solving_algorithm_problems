@@ -19,6 +19,7 @@ def scan(board, n, m):
             if flag == 0:
                 check[i][j] = 1
                 result1 += 1
+    print(check)
     
     if m > 1:
         check2 = [[0] * M for _ in range(N)]
@@ -33,6 +34,7 @@ def scan(board, n, m):
                 if flag == 0:
                     check2[i][j] = 1
                     result2 += 1
+        print(check2)
     
     return max(result1, result2)
 
@@ -40,4 +42,4 @@ C = int(sys.stdin.readline())
 for _ in range(C):
     N, M = map(int, sys.stdin.readline().split())
     rows = [list(sys.stdin.readline().strip()) for _ in range(N)]
-    print(scan(rows, N, M))
+    print('sol: ', scan(rows, N, M))
