@@ -16,3 +16,8 @@ import sys
 a, b = map(int, sys.stdin.readline().split())
 print(a<=b)
 
+#---------- 6051 정수 2개 입력받아 비교하기4 ----------
+import sys
+
+a, b = map(int, sys.stdin.readline().split())
+print(a!=b)
