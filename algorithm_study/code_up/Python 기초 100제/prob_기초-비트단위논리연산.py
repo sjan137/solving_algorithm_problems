@@ -9,3 +9,15 @@ import sys
 
 a, b = map(int, sys.stdin.readline().split())
 print(a&b)
+
+#---------- 6061 비트단위로 OR 하여 출력하기 ----------
+import sys
+
+a, b = map(int, sys.stdin.readline().split())
+print(a|b)
+
+#---------- 6062 비트단위로 XOR 하여 출력하기 ----------
+import sys
+
+a, b = map(int, sys.stdin.readline().split())
+print(a^b)
