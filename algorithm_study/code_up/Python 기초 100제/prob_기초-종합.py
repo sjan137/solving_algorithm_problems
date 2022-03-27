@@ -35,3 +35,29 @@ n, m = map(int, sys.stdin.readline().split())
 for i in range(1, n+1):
     for j in range(1, m+1):
         print(i, j)
+
+#---------- 6081 16진수 구구단 출력하기 ----------
+import sys
+
+n = int(sys.stdin.readline(), 16)
+for i in range(1, 16):
+    print(f'{"%X"%n}*{"%X"%i}={"%X"%(n*i)}')
+
+#---------- 6082 3 6 9 게임의 왕이 되자 ----------
+import sys
+
+n = int(sys.stdin.readline())
+for i in range(1, n+1):
+    if i%10 in [3, 6, 9]:
+        print("X", end =' ')
+    else: print(i, end=' ')
+
+#---------- 6083 빛 섞어 색 만들기 ----------
+import sys
+
+r, g, b = map(int, sys.stdin.readline().split())
+for i in range(r):
+    for j in range(g):
+        for k in range(b):
+            print(i, j, k)
+print(r*g*b)
