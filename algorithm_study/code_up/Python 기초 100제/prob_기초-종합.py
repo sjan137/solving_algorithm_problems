@@ -116,3 +116,12 @@ print(a*(m**(n-1))+d*sum([m**i for i in range(n-1)]))
 # a*m+d=am+d
 # (a*m+d)*m+d=amm+d(m+1)
 # ammm+dm(m+1)+d=ammm+d(mm+m+1)
+
+#---------- 6091 함께 문제 푸는 날 ----------
+import sys
+
+a, b, c = map(int, sys.stdin.readline().split())
+d = 1
+while d%a != 0 or d%b != 0 or d%c != 0:
+    d += 1
+print(d)
